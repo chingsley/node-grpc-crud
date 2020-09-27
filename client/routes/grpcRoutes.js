@@ -28,7 +28,15 @@ Using an older version of gRPC?
 */
 
 // handlers
-const listProducts = (req, res) => {};
+const listProducts = (req, res) => {
+  /*
+  gRPC method for reference:
+  listProducts(Empty) returns (ProductList)
+  */
+  client.listProducts({}, (err, result) => {
+    res.json(result);
+  });
+};
 const readProduct = (req, res) => {};
 const createProduct = (req, res) => {};
 const updateProduct = (req, res) => {};
