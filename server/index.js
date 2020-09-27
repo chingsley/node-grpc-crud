@@ -16,7 +16,15 @@ const productPackageDefinition = grpc.loadPackageDefinition(
 ).product;
 
 // knex queries
-function listProducts(call, callback) {}
+function listProducts(call, callback) {
+  /*
+  Using 'grpc.load'? Send back an array: 'callback(null, { data });'
+  */
+  knex("products").then((data) => {
+    callback(null, { products: data });
+  });
+}
+
 function readProduct(call, callback) {}
 function createProduct(call, callback) {}
 function updateProduct(call, callback) {}
