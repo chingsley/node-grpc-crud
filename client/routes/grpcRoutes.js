@@ -37,7 +37,18 @@ const listProducts = (req, res) => {
     res.json(result);
   });
 };
-const readProduct = (req, res) => {};
+const readProduct = (req, res) => {
+  console.log(req.params);
+  const payload = { id: parseInt(req.params.id) };
+  client.readProduct(payload, (err, result) => {
+    if (err) {
+      // console.log("err ================= ", err.message);
+      res.json(`product ${req.params.id} does not exist`);
+    } else {
+      res.json(result);
+    }
+  });
+};
 const createProduct = (req, res) => {};
 const updateProduct = (req, res) => {};
 const deleteProduct = (req, res) => {};

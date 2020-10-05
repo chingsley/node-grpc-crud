@@ -25,7 +25,19 @@ function listProducts(call, callback) {
   });
 }
 
-function readProduct(call, callback) {}
+function readProduct(call, callback) {
+  knex("products")
+    .where({ id: parseInt(call.request.id) })
+    .then((data) => {
+      if (data.length) {
+        callback(null, data[0]);
+      } else {
+        callback(
+          `Product not found; no product matches the id of ${call.request.id}`
+        );
+      }
+    });
+}
 function createProduct(call, callback) {}
 function updateProduct(call, callback) {}
 function deleteProduct(call, callback) {}
