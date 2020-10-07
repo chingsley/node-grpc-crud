@@ -49,7 +49,12 @@ const readProduct = (req, res) => {
     }
   });
 };
-const createProduct = (req, res) => {};
+const createProduct = (req, res) => {
+  const payload = { name: req.body.name, price: req.body.price };
+  client.createProduct(payload, (err, result) => {
+    res.json(result);
+  });
+};
 const updateProduct = (req, res) => {};
 const deleteProduct = (req, res) => {};
 
