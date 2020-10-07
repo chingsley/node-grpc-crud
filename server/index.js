@@ -38,7 +38,18 @@ function readProduct(call, callback) {
       }
     });
 }
-function createProduct(call, callback) {}
+function createProduct(call, callback) {
+  knex("products")
+    .insert({ name: call.request.name, price: call.request.price })
+    .then((result) => {
+      console.log("result = ", result);
+      callback(null, { status: "success" });
+    })
+    .catch((error) => {
+      // when an error is thrown, it does not get to this catch block ????????
+      console.log(">>>>>>>>>>>. error = ", error);
+    });
+}
 function updateProduct(call, callback) {}
 function deleteProduct(call, callback) {}
 
