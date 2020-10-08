@@ -50,7 +50,22 @@ function createProduct(call, callback) {
       console.log(">>>>>>>>>>>. error = ", error);
     });
 }
-function updateProduct(call, callback) {}
+function updateProduct(call, callback) {
+  knex("products")
+    .where({ id: parseInt(call.request.id) })
+    .update({
+      name: call.request.name,
+      price: call.request.price,
+    })
+    .returning()
+    .then((data) => {
+      if (data) {
+        callback(null, { status: "success" });
+      } else {
+        callback(`no product matches the id of ${call.request.id}`);
+      }
+    });
+}
 function deleteProduct(call, callback) {}
 
 // main
