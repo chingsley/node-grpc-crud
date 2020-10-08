@@ -55,7 +55,20 @@ const createProduct = (req, res) => {
     res.json(result);
   });
 };
-const updateProduct = (req, res) => {};
+const updateProduct = (req, res) => {
+  const payload = {
+    id: parseInt(req.params.id),
+    name: req.body.name,
+    price: req.body.price,
+  };
+  client.updateProduct(payload, (err, result) => {
+    if (err) {
+      res.json("product not found");
+    } else {
+      res.json(result);
+    }
+  });
+};
 const deleteProduct = (req, res) => {};
 
 module.exports = {
