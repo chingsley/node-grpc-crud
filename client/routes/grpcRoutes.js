@@ -69,7 +69,16 @@ const updateProduct = (req, res) => {
     }
   });
 };
-const deleteProduct = (req, res) => {};
+const deleteProduct = (req, res) => {
+  const payload = { id: parseInt(req.params.id) };
+  client.deleteProduct(payload, (err, result) => {
+    if (err) {
+      res.json(`no product matches the id of ${req.params.id}`);
+    } else {
+      res.json(result);
+    }
+  });
+};
 
 module.exports = {
   listProducts,
