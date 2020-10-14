@@ -3,12 +3,12 @@ const path = require("path");
 
 module.exports = {
   development: {
-    client: "postgresql",
+    client: process.env.DB_CLIENT,
     connection: {
-      host: "127.0.0.1",
+      host: process.env.DB_HOST,
       user: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      port: "5432",
+      port: process.env.DB_PORT,
       database: process.env.DB_NAME,
     },
     pool: {
