@@ -42,7 +42,7 @@ function createProduct(call, callback) {
   knex("products")
     .insert({ name: call.request.name, price: call.request.price })
     .then((result) => {
-      console.log("result = ", result);
+      // console.log("result = ", result);
       callback(null, { status: "success" });
     })
     .catch((error) => {
